@@ -9,7 +9,7 @@ uvicorn[standard]==0.37.0
 langchain==0.3.27
 langchain-aws==0.2.35
 langchain-community==0.3.30
-langchain-core==0.3.78
+langchain-core==0.3.79
 langchain-openai==0.3.34
 langchain-ollama==0.3.10
 # langchain-postgres==0.0.14
