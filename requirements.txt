@@ -1,5 +1,5 @@
 # General
-fastapi==0.119.1
+fastapi==0.120.4
 pydantic==2.12.3
 pydantic-settings==2.11.0
 python-multipart==0.0.20
