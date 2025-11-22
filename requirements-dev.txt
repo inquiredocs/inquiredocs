@@ -8,7 +8,7 @@ flake8==7.3.0
 black==25.9.0
 
 # Pre-commit
-pre-commit==4.3.0
+pre-commit==4.5.0
 
 # Coverage
 coverage==7.11.0
