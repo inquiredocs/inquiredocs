@@ -6,7 +6,7 @@ python-multipart==0.0.22
 uvicorn[standard]==0.41.0
 
 # Langchain
-langchain==1.2.10
+langchain==1.2.12
 langchain-aws==1.1.0
 langchain-community==0.4.1
 langchain-core==1.2.11
