@@ -19,7 +19,6 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from app.core.config import settings
 from app.core.llm.base import BaseLLM
 
-
 logger = logging.getLogger(__name__)
 
 

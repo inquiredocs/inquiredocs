@@ -19,7 +19,6 @@ from app.core.config import settings
 from app.core.llm import get_llm_provider
 from app.schemas.llm import LLMAvailableProvidersResponse, LLMRequest, LLMResponse
 
-
 logger = logging.getLogger(__name__)
 
 router = APIRouter()

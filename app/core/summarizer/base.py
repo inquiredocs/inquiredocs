@@ -16,15 +16,14 @@ import logging
 import tempfile
 from typing import Optional, Dict, Any
 
-from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_core.prompts import PromptTemplate
-from langchain_core.documents import Document
 from langchain_core.language_models.chat_models import BaseChatModel
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.runnables import RunnablePassthrough
 
 from app.core.config import settings
 from app.core.summarizer.summary_types import get_summary_type_details
-
 
 logger = logging.getLogger(__name__)
 
@@ -95,12 +94,21 @@ class BaseSummarizer(ABC):
             prompt_template = summary_type_details.get("prompt")
             prompt = PromptTemplate.from_template(prompt_template)
 
-            # Define StuffDocumentsChain
-            stuff_chain = create_stuff_documents_chain(llm, prompt)
+            # Create the chain using the new langchain API
+            chain = (
+                {
+                    "context": RunnablePassthrough(),
+                }
+                | prompt
+                | llm
+                | StrOutputParser()
+            )
 
             # Run summarize on the text
-            docs = [Document(page_content=text)]
-            return stuff_chain.invoke({"context": docs})
+            result = chain.invoke(text)
+            if isinstance(result, dict):
+                return result.get("answer", str(result))
+            return str(result)
         except (ValueError, Exception) as e:
             msg = "Error generating text summary"
             logger.error("%s: %s", msg, e)
@@ -124,10 +132,25 @@ class BaseSummarizer(ABC):
             loader = PyPDFLoader(temp_file_path)
             docs = loader.load()
 
-            # Define StuffDocumentsChain
-            stuff_chain = create_stuff_documents_chain(llm, prompt)
+            # Convert Document objects to text
+            doc_contents = [doc.page_content for doc in docs]
+            full_text = "\n\n".join(doc_contents)
 
-            return stuff_chain.invoke({"context": docs})
+            # Create the chain using the new langchain API
+            chain = (
+                {
+                    "context": RunnablePassthrough(),
+                }
+                | prompt
+                | llm
+                | StrOutputParser()
+            )
+
+            # Run summarize on the text
+            result = chain.invoke(full_text)
+            if isinstance(result, dict):
+                return result.get("answer", str(result))
+            return str(result)
         except (ValueError, Exception) as e:
             msg = "Error generating text summary"
             logger.error("%s: %s", msg, e)
