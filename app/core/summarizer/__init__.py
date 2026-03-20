@@ -18,7 +18,6 @@ from app.core.summarizer.base import BaseSummarizer
 from app.core.summarizer.ollama import OllamaSummarizer
 from app.core.summarizer.openai import OpenAISummarizer
 
-
 # Factory for Summary providers
 _summary_providers: Dict[str, Type[BaseSummarizer]] = {
     "ollama": OllamaSummarizer,

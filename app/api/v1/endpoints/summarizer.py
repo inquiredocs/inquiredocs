@@ -21,7 +21,6 @@ from app.core.summarizer.summary_types import get_summary_types
 from app.schemas.summarizer import SummaryAvailableProvidersResponse, TextSummaryRequest
 from app.schemas.summarizer import PDFSummaryRequest, SummaryResponse
 
-
 logger = logging.getLogger(__name__)
 router = APIRouter()
 

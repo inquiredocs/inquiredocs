@@ -19,7 +19,6 @@ from langchain_openai import ChatOpenAI
 from app.core.config import settings
 from app.core.summarizer.base import BaseSummarizer
 
-
 logger = logging.getLogger(__name__)
 
 
