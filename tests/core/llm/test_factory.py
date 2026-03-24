@@ -18,7 +18,6 @@ from app.core.llm import get_llm_provider
 # from app.core.llm.openai import OpenAILLM
 from app.core.llm.ollama import OllamaLLM
 
-
 # TODO: Test NOT working. Needs fixing
 # def test_get_openai_llm(monkeypatch):
 #     """Test getting OpenAI LLM provider"""

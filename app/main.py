@@ -21,7 +21,6 @@ from app.core.logging_config import root_logger  # noqa: F401
 from app.api.v1.routes import router as v1_router
 from app.core.config import settings
 
-
 logger = logging.getLogger(__name__)
 
 app = FastAPI(title=settings.project_name)

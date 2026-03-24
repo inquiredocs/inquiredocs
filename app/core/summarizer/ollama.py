@@ -19,7 +19,6 @@ from langchain_ollama import ChatOllama
 from app.core.config import settings
 from app.core.summarizer.base import BaseSummarizer
 
-
 logger = logging.getLogger(__name__)
 
 
